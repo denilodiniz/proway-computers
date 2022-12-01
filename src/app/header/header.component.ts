@@ -9,13 +9,17 @@ import { CartService } from '../cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  quantityProductsBadgeCart = this.cartService.getCart().length;
+  quantityProductsBadgeCart = this.cartService.quantityProductsToCart;
 
   constructor(
     private cartService: CartService
   ) { }
 
   ngOnInit(): void {
+  }
+
+  updateQuantityProductsToCart() {
+    this.cartService.updateQuantityProductsBadgeCart();
   }
 
 }

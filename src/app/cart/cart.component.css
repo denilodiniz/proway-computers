@@ -33,6 +33,7 @@ img {
 
 .remove-button:hover {
     filter: brightness(0.9);
+    cursor: pointer;
 }
 
 .cart-total {
@@ -59,4 +60,12 @@ input {
 
 .buy-button:hover {
     filter: brightness(0.9);
+    cursor: pointer;
+}
+
+#emptyCart {
+    display: flex;
+    height: 210px;
+    align-items: center;
+    justify-content: center;
 }

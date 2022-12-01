@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/cart.service';
+import { HeaderComponent } from 'src/app/header/header.component';
 import { NotificationService } from 'src/app/notification.service';
 import { IProduct, IProductCart } from 'src/app/products';
 import { ProductsService } from 'src/app/products.service';
@@ -28,13 +29,15 @@ export class ProductPageComponent implements OnInit {
     this.product = this.productsService.getById(Number(productId));
   }
 
-  addToCart() {
-    /*this.notificationService.notification("Produto adicionado ao carrinho!");*/
+  addProductToCart() {
     const product: IProductCart = {
       ...this.product!,
       quantityProducts : this.quantity
     }
-    this.cartService.addToCart(product);
+    //this.notificationService.notification("Produto adicionado ao carrinho!");
+    this.cartService.addProductToCart(product);
+    this.cartService.updateQuantityProductsBadgeCart();
+    
   }
 
 }

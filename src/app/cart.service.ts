@@ -7,15 +7,22 @@ import { IProductCart } from './products';
 export class CartService {
 
   itens: IProductCart[] = [];
+  quantityProductsToCart = this.getCart().length;
 
   constructor() { }
 
   getCart() {
-    return JSON.parse(localStorage.getItem("carrinho") || "");
+    this.itens = JSON.parse(localStorage.getItem("carrinho") || "[]");
+    return this.itens;
   }
 
-  addToCart(product: IProductCart) {
+  addProductToCart(product: IProductCart) {
     this.itens.push(product);
+    localStorage.setItem("carrinho", JSON.stringify(this.itens));
+  }
+
+  removeProductToCart(productId: number) {
+    this.itens  = this.itens.filter(item => item.id !== productId);
     localStorage.setItem("carrinho", JSON.stringify(this.itens));
   }
 
@@ -23,4 +30,9 @@ export class CartService {
     this.itens = [];
     localStorage.clear();
   }
+
+  updateQuantityProductsBadgeCart() {
+    this.quantityProductsToCart = this.getCart().length;
+  }
+
 }
