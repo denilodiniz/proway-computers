@@ -23,12 +23,74 @@
         <input 
             type="text" 
             placeholder="Digite o assunto" 
-            formControlName="subjet"
+            formControlName="subject"
+            [class.valid]="formContact.controls['subject'].valid"
+            [class.invalid]="formContact.controls['subject'].invalid &&
+            (formContact.controls['subject'].touched || formContact.controls['subject'].dirty)"
         >
-        <input type="tel" placeholder="(00) 0 0000-0000" formControlName="phone">
-        <input type="email" placeholder="Digite seu e-mail" formControlName="email">
-        <textarea maxlength="300" placeholder="Digite a sua menssagem" formControlName="message"></textarea>
-        <button>Enviar</button>
+        <div *ngIf="formContact.controls['subject'].invalid &&
+        (formContact.controls['subject'].touched || formContact.controls['subject'].dirty)">
+            <small *ngIf="formContact.controls['subject'].hasError('minlength')">
+                Esse campo precisa de no mínimo 20 caracteres.
+            </small>
+            <small *ngIf="formContact.controls['subject'].hasError('required')">
+                Campo obrigatório.
+            </small>
+        </div>
+        <input 
+            type="tel"
+            placeholder="(00) 0 0000-0000" 
+            mask="(00) 0 0000-0000"
+            formControlName="phone"
+            [class.valid]="formContact.controls['phone'].valid"
+            [class.invalid]="formContact.controls['phone'].invalid &&
+            (formContact.controls['phone'].touched || formContact.controls['phone'].dirty)"
+        >
+        <div *ngIf="formContact.controls['phone'].invalid &&
+        (formContact.controls['phone'].touched || formContact.controls['phone'].dirty)">
+            <small *ngIf="formContact.controls['phone'].hasError('minlength')">
+                Esse campo precisa de no mínimo 11 caracteres.
+            </small>
+            <small *ngIf="formContact.controls['phone'].hasError('required')">
+                Campo obrigatório.
+            </small>
+        </div>
+        <input 
+            type="email" 
+            placeholder="Digite seu e-mail" 
+            formControlName="email"
+            [class.valid]="formContact.controls['email'].valid"
+            [class.invalid]="formContact.controls['email'].invalid &&
+            (formContact.controls['email'].touched || formContact.controls['email'].dirty)"
+        >
+        <div *ngIf="formContact.controls['email'].invalid &&
+        (formContact.controls['email'].touched || formContact.controls['email'].dirty)">
+            <small *ngIf="formContact.controls['email'].hasError('email')">
+                Esse campo precisa digitar um e-mail válido.
+            </small>
+            <small *ngIf="formContact.controls['email'].hasError('required')">
+                Campo obrigatório.
+            </small>
+        </div>
+        <textarea 
+            maxlength="300"
+            rows="7"
+            placeholder="Digite a sua menssagem" 
+            formControlName="message"
+            [class.valid]="formContact.controls['message'].valid"
+            [class.invalid]="formContact.controls['message'].invalid &&
+            (formContact.controls['message'].touched || formContact.controls['message'].dirty)"
+        ></textarea>
+        <div *ngIf="formContact.controls['message'].invalid &&
+        (formContact.controls['message'].touched || formContact.controls['message'].dirty)">
+            <small *ngIf="formContact.controls['message'].hasError('minLength')">
+                Esse campo precisa de no mínimo 20 caracteres..
+            </small>
+            <small *ngIf="formContact.controls['message'].hasError('required')">
+                Campo obrigatório.
+            </small>
+        </div>
+        <button (click)="formSend()" [disabled]="formContact.invalid">Enviar</button>
     </form>
     <address>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7922.359678840628!2d-36.9228732!3d-6.8690421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7af0b62662b4b6f%3A0x88bf5e8bcbefae6!2sCentro%2C%20Santa%20Luzia%20-%20PB%2C%2058600-000!5e0!3m2!1spt-BR!2sbr!4v1669861690484!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

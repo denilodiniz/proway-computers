@@ -38,4 +38,9 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  formSend() {
+    alert("Mensagem enviada com sucesso");
+    this.formContact.reset();
+  }
+
 }
