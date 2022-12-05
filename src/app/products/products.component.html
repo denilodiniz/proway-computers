@@ -1,4 +1,4 @@
-<section class="product-list" *ngIf="(products != undefined && products?.length); else emptyProducts">
+<section class="product-list" *ngIf="(products?.length); else emptyProducts">
     <div class="product-list__card" *ngFor="let product of products">
         <a routerLink="/produtos/{{product.id}}" class="product-list__link">
             <img [src]="product.image">
